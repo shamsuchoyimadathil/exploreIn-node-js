@@ -14,6 +14,7 @@ const { port } = config
 
 export default ({ app }: { app: express.Application }) => {
 
+    console.log(path.join(__dirname, '/views', 'layouts'),'layout path')
     // view engine setup
     app.set('views', path.join(__dirname, '/views'));
     const hbsConf = handlebars.create({
