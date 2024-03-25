@@ -6,12 +6,12 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
     console.log('inside / ')
     // console.log(req,res,next)
-    res.render('index',{test:'test'})
+    res.render('index', { test: 'test' })
 });
 
 router.get('/test', (req, res, next) => {
     // console.log(req,res,next)
-    res.render('test',{test:'test'})
+    res.render('test', { test: 'test' })
 });
 
 

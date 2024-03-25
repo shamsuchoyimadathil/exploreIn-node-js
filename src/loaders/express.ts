@@ -17,12 +17,15 @@ export default ({ app }: { app: express.Application }) => {
 
     // console.log(path.join(__dirname, '/views', 'layouts'), 'layout path')
     // view engine setup
+    // console.log(path.join(__dirname, '/views/partials'),'path')
     app.set('views', path.join(__dirname, '/views'));
     const hbsConf = handlebars.create({
         extname: 'hbs',
-        layoutsDir: path.join(__dirname, '/views', 'layouts'),
-        defaultLayout: 'layout.hbs',
-        partialsDir: [path.join(__dirname, '/views')],
+        // layoutsDir: path.join(__dirname, '/views/layouts'),
+        // defaultLayout: 'layout.hbs',
+
+        // partialsDir:path.join(__dirname, '/views/partials'),
+        partialsDir:__dirname + '/views/',
         helpers: {
             stringify: (obj: any) => {
                 if (obj) {
@@ -33,10 +36,14 @@ export default ({ app }: { app: express.Application }) => {
             formatDate: (date: string, format: string) => {
                 return dayjs(date).format(format);
             },
-        }
+        },
+        
     })
+
     app.engine('handlebars', hbsConf.engine);
+    
     app.set('view engine', 'hbs');
+    app.set('view options', { layout: 'layouts/layout' });
 
 
     app.set('port', port || 1111);
