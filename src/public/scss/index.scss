@@ -1,3 +1,11 @@
-@import 'style';
+@import 'global';
 @import 'common';
 @import 'utils';
+@import 'mixins';
+@import 'style';
+
+
+
+@import 'partials/menu';
+@import 'partials/navbar';
+@import 'partials/addPost';

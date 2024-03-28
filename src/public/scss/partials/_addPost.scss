@@ -1,0 +1,31 @@
+.add-post {
+    border: 1px solid rgb(128, 255, 0);
+    background-color: $bg-secondary;
+    width: 100%;
+padding: 1rem;
+  .input-wrap {
+    input {
+      //
+    }
+  }
+  .post-options {
+    // border: 1px solid green;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    .options {
+        display: flex;
+        justify-content: space-between;
+      .option__item {
+        .material-symbols-outlined {
+            //
+        }
+      }
+      .publish-btn {
+        @include ex-btn;
+      }
+    }
+  }
+}

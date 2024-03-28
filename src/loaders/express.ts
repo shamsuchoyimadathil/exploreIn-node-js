@@ -6,8 +6,7 @@ import indexRoute from '../routes/index'
 import authRoute from '../routes/auth'
 import userRoute from '../routes/user'
 import dayjs from 'dayjs';
-
-
+import hbs from 'hbs'
 
 const __dirname = path.resolve('./src');
 
@@ -18,14 +17,13 @@ export default ({ app }: { app: express.Application }) => {
     // console.log(path.join(__dirname, '/views', 'layouts'), 'layout path')
     // view engine setup
     // console.log(path.join(__dirname, '/views/partials'),'path')
+    hbs.registerPartials(path.join(__dirname, '/views/partials'))
+    hbs.handlebars.registerHelper('getIcon', (icon: string) => {
+        return new hbs.handlebars.SafeString('<span class="material-symbols-outlined">' + icon + '</span>')
+    })
     app.set('views', path.join(__dirname, '/views'));
     const hbsConf = handlebars.create({
         extname: 'hbs',
-        // layoutsDir: path.join(__dirname, '/views/layouts'),
-        // defaultLayout: 'layout.hbs',
-
-        // partialsDir:path.join(__dirname, '/views/partials'),
-        partialsDir:__dirname + '/views/',
         helpers: {
             stringify: (obj: any) => {
                 if (obj) {
@@ -36,12 +34,15 @@ export default ({ app }: { app: express.Application }) => {
             formatDate: (date: string, format: string) => {
                 return dayjs(date).format(format);
             },
+            getIcon: (icon: string) => {
+                return new hbs.handlebars.SafeString('<span class="material-symbols-outlined">' + icon + '</span>')
+            }
         },
-        
+
     })
 
     app.engine('handlebars', hbsConf.engine);
-    
+
     app.set('view engine', 'hbs');
     app.set('view options', { layout: 'layouts/layout' });
 
